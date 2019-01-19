@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: cypress/browsers:chrome69
+    - image: node:11.7
   environment:
     TZ: "Asia/Yekaterinburg"
 
