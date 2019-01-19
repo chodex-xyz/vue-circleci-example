@@ -1,39 +1,19 @@
-# cypress
+# The example of integration Vue + Jest + Cypress + Circle 
 
-## Project setup
-```
-npm install
-```
+## Features
+* Jest with JUnit reports for pretty view failed tests in CircleCI
+* Cypress with JUnit reports (each test will generate separate XML using `[hash]` in the name of a report file)
+![Cypress failed a test with JUnit reports](screenshots/circleci-cypress.png)
+* Video and screenshots uploaded to awesome https://dashboard.cypress.io 
+![Dashboard example](screenshots/dashboard-cypress.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+##  Reference list
+https://github.com/cypress-io/cypress-example-docker-circle
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
-```
-npm run test
-```
+## Using
 
-### Lints and fixes files
 ```
-npm run lint
+npm run ci:unit
+npm run ci:e2e
 ```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
