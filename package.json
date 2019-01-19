@@ -7,7 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "ci:e2e": "vue-cli-service test:e2e --headless --mode=production --reporter junit --reporter-options \"mochaFile=test-reports/cypress-junit.xml,toConsole=true\"",
+    "ci:unit": "vue-cli-service test:unit --coverage --ci --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
     "vue": "^2.5.21",
@@ -27,6 +29,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "jest-junit": "^6.0.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.21"

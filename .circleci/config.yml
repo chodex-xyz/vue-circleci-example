@@ -1,0 +1,54 @@
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: cypress/browsers:chrome71
+  environment:
+    TZ: "Asia/Yekaterinburg"
+
+version: 2.1
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      # find compatible cache from previous build,
+      # it should have same dependencies installed from package.json checksum
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - cache-
+
+      # устанавливаем зависимости
+      # https://habr.com/post/350762/
+      - run: npm ci
+
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - ~/.npm
+            - ~/.cache
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .cache/Cypress
+
+      - run:
+          name: ci:unit - jest
+          command: npm run ci:unit
+          environment:
+            JEST_JUNIT_OUTPUT: "test-reports/jest-junit.xml"
+
+      - run:
+          name: ci:e2e - cypress
+          command: npm run ci:e2e
+
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
