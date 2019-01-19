@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "ci:unit": "vue-cli-service test:unit --coverage --ci --reporters=default --reporters=jest-junit",
-    "ci:e2e": "vue-cli-service test:e2e --headless --mode=production --reporter mocha-junit-reporter --reporter-options \"mochaFile=test-reports/cypress-junit.[hash].xml\""
+    "ci:e2e": "vue-cli-service test:e2e --headless --mode=production --reporter mocha-junit-reporter --reporter-options \"mochaFile=test-reports/cypress-junit.[hash].xml\" --record --key d82495a7-988c-4df7-ad4e-1eea5dba1cfd"
   },
   "dependencies": {
     "vue": "^2.5.21",
