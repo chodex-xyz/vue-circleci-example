@@ -1,5 +1,6 @@
 # The example of integration Vue + Jest + Cypress + Circle 
 [![CircleCI](https://circleci.com/gh/kcrebound/vue-circleci-example.svg?style=svg)](https://circleci.com/gh/kcrebound/vue-circleci-example)
+[![codecov](https://codecov.io/gh/kcrebound/vue-circleci-example/branch/master/graph/badge.svg)](https://codecov.io/gh/kcrebound/vue-circleci-example)
 
 ## Features
 * Jest with JUnit reports for pretty view failed tests in CircleCI
