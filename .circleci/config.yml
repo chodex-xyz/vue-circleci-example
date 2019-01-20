@@ -12,6 +12,8 @@ orbs:
 
 jobs:
   unit_tests:
+    <<: *defaults
+
     steps:
       - checkout
 
