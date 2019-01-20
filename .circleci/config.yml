@@ -6,8 +6,9 @@ defaults: &defaults
     TZ: "Asia/Yekaterinburg"
 
 version: 2.1
+
 jobs:
-  build:
+  unit_tests:
     <<: *defaults
 
     steps:
@@ -21,7 +22,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - cache-
 
-      # install dependencies from package-lock.json
       - run: npm ci
 
       - save_cache:
@@ -37,13 +37,45 @@ jobs:
             - .cache/Cypress
 
       - run:
-          name: ci:unit - jest
-          command: npm run ci:unit
+          command: npm run ci:unit && ./node_modules/.bin/codecov
           environment:
             JEST_JUNIT_OUTPUT: "test-reports/jest-junit.xml"
 
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
+
+  e2e_tests:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      # find compatible cache from previous build,
+      # it should have same dependencies installed from package.json checksum
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - cache-
+
+      - run: npm ci
+
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - ~/.npm
+            - ~/.cache
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .cache/Cypress
+
       - run:
-          name: ci:e2e - cypress
           command: npm run ci:e2e
 
       - store_test_results:
@@ -51,3 +83,12 @@ jobs:
 
       - store_artifacts:
           path: test-reports
+
+workflows:
+  version: 2
+  test_build_app:
+    jobs:
+      - unit_tests
+      - e2e_tests
+
+
