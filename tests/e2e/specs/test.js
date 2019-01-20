@@ -6,8 +6,8 @@ describe("My First Test", () => {
     cy.contains("h1", "Welcome to Your Vue.js App");
   });
 
-  it("should fail", () => {
-    cy.visit("/");
-    cy.contains("h1", "NOT FOUND");
-  });
+  // it("should fail", () => {
+  //   cy.visit("/");
+  //   cy.contains("h1", "NOT FOUND");
+  // });
 });
