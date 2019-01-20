@@ -22,7 +22,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - cache-
 
-      # install dependencies from package-lock.json
       - run: npm ci
 
       - save_cache:
@@ -38,7 +37,6 @@ jobs:
             - .cache/Cypress
 
       - run:
-          name: ci:unit - jest
           command: npm run ci:unit
           environment:
             JEST_JUNIT_OUTPUT: "test-reports/jest-junit.xml"
@@ -63,7 +61,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - cache-
 
-      # install dependencies from package-lock.json
       - run: npm ci
 
       - save_cache:
@@ -79,7 +76,6 @@ jobs:
             - .cache/Cypress
 
       - run:
-          name: ci:e2e - jest
           command: npm run ci:e2e
 
       - store_test_results:
