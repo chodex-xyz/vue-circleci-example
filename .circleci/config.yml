@@ -41,6 +41,9 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: "test-reports/jest-junit.xml"
 
+      - run:
+          command: codecov
+
       - store_test_results:
           path: test-reports
 
