@@ -7,13 +7,19 @@
 ![Cypress failed a test with JUnit reports](screenshots/circleci-cypress.png)
 * Video and screenshots uploaded to awesome https://dashboard.cypress.io 
 ![Dashboard example](screenshots/dashboard-cypress.png)
+* Coverage reports by codecov.io
 
 ##  Reference list
 https://github.com/cypress-io/cypress-example-docker-circle
 
-
 ## Using
 
+### Environment variables
+```
+CYPRESS_RECORD_KEY
+CODECOV_TOKEN
+```
+### Commands
 ```
 npm run ci:unit
 npm run ci:e2e
