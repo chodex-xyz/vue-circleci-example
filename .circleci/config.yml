@@ -37,7 +37,7 @@ jobs:
             - .cache/Cypress
 
       - run:
-          command: npm run ci:unit && codecov
+          command: npm run ci:unit && ./node_modules/.bin/codecov
           environment:
             JEST_JUNIT_OUTPUT: "test-reports/jest-junit.xml"
 
