@@ -60,5 +60,5 @@ workflows:
       - cypress/run:
           requires:
             - prepare
-#        start: 'npm run serve'
+          start: 'npm run serve'
 
